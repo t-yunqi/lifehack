@@ -1,14 +1,21 @@
 'use server'
 
-import { cookies } from 'next/headers'
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
+import { createClient } from '@/utils/supabase/server'
 
-export async function loginUser() {
-    const cookieStore = await cookies();
-
-    cookieStore.set('isLoggedIn', 'true', {
-        httpOnly: true,
-        path: '/',
-        secure: true,
-        maxAge: 60 * 60 * 24, // 1 day
-    })
+export async function login(formData: FormData) {
+    const supabase = await createClient()
+    // type-casting here for convenience
+    // in practice, you should validate your inputs
+    const data = {
+        email: formData.get('email') as string,
+        password: formData.get('password') as string,
+    }
+    const { error } = await supabase.auth.signInWithPassword(data)
+    if (error) {
+        redirect('/error')
+    }
+    revalidatePath('/', 'layout')
+    redirect('/dashboard')
 }

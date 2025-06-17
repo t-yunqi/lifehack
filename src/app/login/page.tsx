@@ -1,91 +1,68 @@
 'use client'
 
-import { loginUser } from './actions'
+import { login } from './actions'
 
 export default function LoginPage() {
   return (
-    <div className="bg-gray-100 flex justify-center items-center h-screen">
-      {/* Left: Image (desktop only) */}
-      <div className="w-1/2 h-screen hidden lg:block">
-        <img
-          src="https://images.stockcake.com/public/a/2/4/a249d22a-a432-497e-8dad-0f4717362b13_large/stethoscope-on-desk-stockcake.jpg"
-          alt="Placeholder"
-          className="object-cover w-full h-full"
-        />
-      </div>
+    <div className="relative flex h-screen w-screen">
+      {/* Full Background Image */}
+      <img
+        src="https://images.stockcake.com/public/a/2/4/a249d22a-a432-497e-8dad-0f4717362b13_large/stethoscope-on-desk-stockcake.jpg"
+        alt="Background"
+        className="absolute inset-0 object-cover w-full h-full z-0"
+      />
+
+      {/* Overlay for darkening if needed (optional) */}
+      {/* <div className="absolute inset-0 bg-black bg-opacity-20 z-0" /> */}
 
       {/* Right: Login Form */}
-      <div className="lg:p-36 md:p-52 sm:p-20 p-8 w-full lg:w-1/2">
+      <div className="relative z-10 flex flex-col justify-center lg:ml-auto w-full lg:w-1/2 h-full bg-white bg-opacity-80 p-8 lg:p-36">
         <h1 className="text-2xl font-semibold mb-4">Login</h1>
-        <form action="#" method="POST">
-          {/* Username */}
+
+        <form>
           <div className="mb-4">
-            <label htmlFor="username" className="block text-gray-600">
-              Username
-            </label>
+            <label htmlFor="email" className="block text-gray-700">Email</label>
             <input
-              type="text"
-              id="username"
-              name="username"
+              type="email"
+              id="email"
+              name="email"
+              required
               className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-              autoComplete="off"
             />
           </div>
 
-          {/* Password */}
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-gray-600">
-              Password
-            </label>
+          <div className="mb-6">
+            <label htmlFor="password" className="block text-gray-700">Password</label>
             <input
               type="password"
               id="password"
               name="password"
+              required
               className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-              autoComplete="off"
             />
           </div>
 
-          {/* Remember Me */}
-          <div className="mb-4 flex items-center">
-            <input
-              type="checkbox"
-              id="remember"
-              name="remember"
-              className="text-blue-500"
-            />
-            <label htmlFor="remember" className="text-gray-600 ml-2">
-              Remember Me
-            </label>
+          <div>
+            <button
+              formAction={login}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
+            >
+              Login
+            </button>
           </div>
 
-          {/* Forgot Password */}
-          <div className="mb-6 text-blue-500">
-            <a href="#" className="hover:underline">
-              Forgot Password?
+          <div>
+            <a href="/request-for-acc">
+              <button
+                type="button"
+                className="mt-6 text-blue-500 text-center"
+              >
+                Request for account
+              </button>
             </a>
           </div>
 
-          {/* Login Button */}
-          <button
-            onClick={async (e) => {
-                e.preventDefault();
-                await loginUser()
-                window.location.href = '/dashboard'
-            }}
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
-          >
-            Login
-          </button>
         </form>
-
-        {/* Sign Up Link */}
-        <div className="mt-6 text-blue-500 text-center">
-          <a href="/signup" className="hover:underline">
-            Request an account
-          </a>
-        </div>
       </div>
     </div>
   );
