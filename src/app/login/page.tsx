@@ -8,7 +8,7 @@ export default function LoginPage() {
       {/* Left: Image (desktop only) */}
       <div className="w-1/2 h-screen hidden lg:block">
         <img
-          src="https://placehold.co/800x/667fff/ffffff.png?text=Your+Image&font=Montserrat"
+          src="https://images.stockcake.com/public/a/2/4/a249d22a-a432-497e-8dad-0f4717362b13_large/stethoscope-on-desk-stockcake.jpg"
           alt="Placeholder"
           className="object-cover w-full h-full"
         />
@@ -83,7 +83,7 @@ export default function LoginPage() {
         {/* Sign Up Link */}
         <div className="mt-6 text-blue-500 text-center">
           <a href="/signup" className="hover:underline">
-            Sign up Here
+            Request an account
           </a>
         </div>
       </div>
