@@ -9,9 +9,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'GET') {
     const { data, error } = await supabase
       .from('patients')
-      .select('*')
+      .select()
       .eq('id', id)
-      .single()
 
     await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/logs`, {
       method: 'POST',
@@ -25,6 +24,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
 
     if (error) return res.status(500).json({ error: error.message })
+    if (!data) {
+      return res.status(404).json({ error: 'Patient not found' })
+    }
     return res.status(200).json(data)
   }
 
