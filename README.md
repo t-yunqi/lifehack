@@ -4,7 +4,10 @@
 HIPAAX is a secure, real-time medical records access platform designed for healthcare professionals in Singapore. It simplifies centralized health data access while enforcing TOTP-based 2FA for regulatory compliance and patient safety.
 
 ## Live Demo
-https://youtu.be/mCvbZeKa8Mk
+Try HIPAAX live: [https://lifehack-red.vercel.app](https://lifehack-red.vercel.app)
+
+## Demo Video
+Watch a walkthrough: https://youtu.be/mCvbZeKa8Mk
 
 ## Features
 
