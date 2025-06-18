@@ -17,7 +17,7 @@ interface Patient {
 // Array Editor Component
 interface ArrayEditorProps {
   label: string;
-  items: string[] | null;
+  items: string[] | null | undefined;
   onChange: (items: string[]) => void;
   placeholder: string;
   bgColor: string;
